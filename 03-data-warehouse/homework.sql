@@ -1,8 +1,10 @@
+DECLARE GS_BUCKET_PATH STRING DEFAULT @GS_BUCKET_PATH; -- env var set on local
+
 -- Create an external table refer to gcs
 CREATE OR REPLACE EXTERNAL TABLE `etlwork.taxi_rides.green_taxi`
 OPTIONS (
   FORMAT='PARQUET',
-  uris=['gcs_uri']
+  uris=[GS_BUCKET_PATH]
 );
 
 -- Create an internal table in BigQuery using the external table
